@@ -3,39 +3,20 @@
 #include <iostream>
 #include <stdlib.h>
 #include <math.h>
-#include <time.h>
 
-
-typedef struct Points {
-
-	float x;
-	float y;
-
-}Point;
-
-Point genPoint()
+bool insideCircle()
 {
-	Point newPoint;
-	newPoint.x = (float)rand() / RAND_MAX;
-	newPoint.y = (float)rand() / RAND_MAX;
-	return newPoint;
-
-}
-
-bool insideCircle(Point* point)
-{
-	float d = sqrt(((point->x) * (point->x)) + ((point->y) * (point->y)));
+	float x = (float)rand() / RAND_MAX;
+	float y = (float)rand() / RAND_MAX;
+	float d = sqrt((x*x) + (y*y));
 	if (d > 1)
 	{
 		return false;
-		std::cout << d << ": Out";
 	}
 	else
 	{
 		return true;
-		std::cout << d << ": In";
 	}
-
 }
 
 
@@ -45,8 +26,7 @@ int main()
 	int total{ 0 };
 	for (int index=0;index<=1000000;index++)
 	{
-		Point pt = genPoint();
-		bool test = insideCircle(&pt);
+		bool test = insideCircle();
 		if (test)
 		{
 			in = in + 1;
